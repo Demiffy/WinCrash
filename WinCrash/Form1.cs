@@ -8,6 +8,11 @@ namespace WinCrash
 {
     public partial class Form1 : Form
     {
+        private string[] faces = { ":(", ":3", "x3", ";3", "uwu", "owo", ":)", ":o", ":p", ">w<" };
+        private int currentFaceIndex = 0;
+        private string originalMainText = "Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.";
+        private string alternateMainText = "Oopsie Woopsie! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!";
+        private string[] stopcodes = { "0x00000000", "0x00000152", "0x00000085", "0x00000001", "0x00000102" };
         private int percentComplete = 0;
         private Random random = new Random();
         private LowLevelKeyboardProc _proc;
@@ -22,6 +27,8 @@ namespace WinCrash
 
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
             this.Cursor = Cursors.No;
+
+            stopcodeLabel.Text = stopcodes[random.Next(stopcodes.Length)];
 
             _proc = HookCallback;
             _hookID = SetHook(_proc);
@@ -115,6 +122,27 @@ namespace WinCrash
             if (e.Alt && e.KeyCode == Keys.U)
             {
                 this.Close();
+            }
+
+            // Check if Up or Down arrow key is pressed
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            {
+                maintextLabel.Text = maintextLabel.Text == originalMainText ? alternateMainText : originalMainText;
+            }
+
+            // Check if left or right arrow key is pressed
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
+                if (e.KeyCode == Keys.Left)
+                {
+                    currentFaceIndex = (currentFaceIndex - 1 + faces.Length) % faces.Length;
+                }
+                else if (e.KeyCode == Keys.Right)
+                {
+                    currentFaceIndex = (currentFaceIndex + 1) % faces.Length;
+                }
+
+                faceLabel.Text = faces[currentFaceIndex];
             }
         }
 

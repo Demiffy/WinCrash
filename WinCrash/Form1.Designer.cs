@@ -61,7 +61,7 @@
             faceLabel.ForeColor = Color.White;
             faceLabel.Location = new Point(181, 65);
             faceLabel.Name = "faceLabel";
-            faceLabel.Size = new Size(196, 218);
+            faceLabel.Size = new Size(444, 218);
             faceLabel.TabIndex = 1;
             faceLabel.Text = ":(";
             // 
@@ -125,7 +125,7 @@
             // 
             winLogo.BackgroundImage = (Image)resources.GetObject("winLogo.BackgroundImage");
             winLogo.BackgroundImageLayout = ImageLayout.Zoom;
-            winLogo.Location = new Point(867, 297);
+            winLogo.Location = new Point(829, 297);
             winLogo.Name = "winLogo";
             winLogo.Size = new Size(200, 208);
             winLogo.TabIndex = 7;
@@ -137,7 +137,7 @@
             loadingAnimPicturebox.BackColor = Color.Black;
             loadingAnimPicturebox.BackgroundImageLayout = ImageLayout.Zoom;
             loadingAnimPicturebox.Image = Properties.Resources._3013_ezgif_com_speed;
-            loadingAnimPicturebox.Location = new Point(934, 683);
+            loadingAnimPicturebox.Location = new Point(896, 683);
             loadingAnimPicturebox.Name = "loadingAnimPicturebox";
             loadingAnimPicturebox.Size = new Size(68, 76);
             loadingAnimPicturebox.TabIndex = 8;
